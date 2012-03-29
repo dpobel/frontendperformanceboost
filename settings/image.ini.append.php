@@ -7,6 +7,10 @@
 # that are rarely useful in small images
 Filters[]=optimize=-strip
 
+# Generates progressive JPEG (ie most browser will load it progressively)
+# this can give better user experience on "big" images
+Filters[]=progressive=-interlace Plane
+
 # Uncomment the following line to strip EXIF metadata in
 # all variations (except original)
 #PreParameters=-strip
@@ -30,10 +34,12 @@ Filters[]=optimize
 [rss]
 Filters[]=optimize
 
-# uncomment those 2 lines to also optimize the reference alias
+[reference]
+Filters[]=progressive
+# uncomment the following line to also optimize the reference alias
 # disable by default because you might want to keep the EXIF info
-#[reference]
 #Filters[]=optimize
+
 
 
 ###############################
@@ -62,9 +68,10 @@ Filters[]=optimize
 [infoboximage]
 Filters[]=optimize
 
-# uncomment those 2 lines to also optimize the reference alias
+[imagelarge]
+Filters[]=progressive
+# uncomment the following line to also optimize the imagelarge alias
 # disable by default because you might want to keep the EXIF info
-#[imagelarge]
 #Filters[]=optimize
 
 # ezmultiupload
