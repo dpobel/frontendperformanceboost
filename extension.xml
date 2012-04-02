@@ -14,6 +14,13 @@
             <copyright>Copyright (c) 2011 Yahoo! and (c) 2012 Tubal Martin</copyright>
             <info_url>https://github.com/tubalmartin/YUI-CSS-compressor-PHP-port</info_url>
         </uses>
+        <uses>
+            <name>Google Closure Compiler</name>
+            <license>Apache License version 2.0</license>
+            <copyright>The Closure Compiler Authors</copyright>
+            <info_url>https://developers.google.com/closure/compiler/</info_url>
+            <version>20120305 (revision 1810)</version>
+        </uses>
     </software>
     <dependencies>
         <extends>
