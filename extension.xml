@@ -21,6 +21,13 @@
             <info_url>https://developers.google.com/closure/compiler/</info_url>
             <version>20120305 (revision 1810)</version>
         </uses>
+        <uses>
+            <name>YUI Compressor</name>
+            <license>BSD License</license>
+            <copyright>Copyright © 2012 Yahoo! Inc.</copyright>
+            <info_url>http://yuilibrary.com/projects/yuicompressor/</info_url>
+            <version>2.4.7</version>
+        </uses>
     </software>
     <dependencies>
         <extends>
