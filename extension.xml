@@ -34,7 +34,7 @@
             <extension name="ezjscore" />
         </extends>
         <!--
-             frontendperformanceboost is compatible with CssInlineImageOptimizer
+             make sure frontendperformanceboost is compatible with CssInlineImageOptimizer
              since we reset the array ezjscore.ini/[eZJSCore]/CssInlineImageOptimizer
          -->
         <uses>
