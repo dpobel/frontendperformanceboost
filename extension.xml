@@ -35,6 +35,13 @@
             <info_url>https://github.com/mishoo/UglifyJS</info_url>
             <version>1.2.6</version>
         </uses>
+        <uses>
+            <name>JSMinPlus</name>
+            <license>MPL 1.1/GPL 2.0/LGPL 2.1</license>
+            <copyright>Tino Zijdel crisp@tweakers.net</copyright>
+            <info_url>http://crisp.tweakblogs.net/blog/cat/716</info_url>
+            <version>1.4</version>
+        </uses>
     </software>
     <dependencies>
         <extends>

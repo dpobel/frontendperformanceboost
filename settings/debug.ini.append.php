@@ -5,6 +5,7 @@ fepphpyuicsscompressoroptimizer=enabled
 
 fepclosurejavascriptoptimizer=disabled
 fepyuicompressorjavascriptoptimizer=disabled
-fepuglifyjavascriptoptimizer=enabled
+fepuglifyjavascriptoptimizer=disabled
+fepjsminplusjavascriptoptimizer=enabled
 
 */ ?>
