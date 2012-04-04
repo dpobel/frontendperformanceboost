@@ -18,18 +18,16 @@ class fepOptimizer
      */
     public static function report( $debugSettings, $name, $originalCodeSize, $optimizedCodeSize )
     {
+        $p = round( $optimizedCodeSize * 100/$originalCodeSize, 1 );
         eZDebugSetting::writeDebug(
             $debugSettings,
-            'Original size: ' . $originalCodeSize,
-            $name
-        );
-        eZDebugSetting::writeDebug(
-            $debugSettings,
-            'Optimized size: ' . $optimizedCodeSize
-                . ' (' . round( $optimizedCodeSize * 100/$originalCodeSize, 1 ) . '%)',
+            'Original size: ' . $originalCodeSize . " bytes\n" .
+                'Optimized size: ' . $optimizedCodeSize .
+                ' bytes (' . $p . '% of the original size)' . "\n" .
+                'Saved: ' . ( $originalCodeSize - $optimizedCodeSize ) .
+                ' bytes (' . ( 100 - $p ) . '%)',
             $name
         );
     }
-
 
 }
