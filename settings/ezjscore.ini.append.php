@@ -7,7 +7,8 @@ CssOptimizer[]=fepPhpYuiCssCompressorOptimizer
 JavaScriptOptimizer[]
 #JavaScriptOptimizer[]=fepClosureJavaScriptOptimizer
 #JavaScriptOptimizer[]=fepYuiCompressorJavaScriptOptimizer
-JavaScriptOptimizer[]=fepUglifyJavaScriptOptimizer
+#JavaScriptOptimizer[]=fepUglifyJavaScriptOptimizer
+JavaScriptOptimizer[]=fepJSMinPlusJavaScriptOptimizer
 
 [GoogleClosure]
 Command=java -jar extension/frontendperformanceboost/bin/compiler.jar --compilation_level SIMPLE_OPTIMIZATIONS --summary_detail_level 3

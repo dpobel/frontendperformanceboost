@@ -5,7 +5,7 @@
  * @package frontendperformanceboost
  */
 
-class fepCliOptimizer
+class fepCliOptimizer extends fepOptimizer
 {
     /**
      * The setting containing the environement variables to set
@@ -153,27 +153,16 @@ class fepCliOptimizer
             throw new Exception( 'Returned value is not 0: ' . $return );
         }
         $this->optimizedCodeSize = strlen( $code );
-        $this->report();
+        self::report(
+            $this->getDebugSettings(),
+            get_class( $this ),
+            $this->originalCodeSize,
+            $this->optimizedCodeSize
+        );
+
         return $code;
     }
 
-    /**
-     * Generates a summary of this optimization if the DebugOutput is enabled
-     * if the corresponding conditional debug is enabled.
-     */
-    protected function report()
-    {
-        eZDebugSetting::writeDebug(
-            $this->getDebugSettings(),
-            'Original size: ' . $this->originalCodeSize, __METHOD__
-        );
-        eZDebugSetting::writeDebug(
-            $this->getDebugSettings(),
-            'Optimized size: ' . $this->optimizedCodeSize
-                . ' (' . round( $this->optimizedCodeSize * 100/$this->originalCodeSize, 1 ) . '%)',
-            __METHOD__
-        );
-    }
 
 }
 
