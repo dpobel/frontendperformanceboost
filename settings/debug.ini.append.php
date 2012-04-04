@@ -1,11 +1,11 @@
 <?php /*
 
 [GeneralCondition]
-fepphpyuicsscompressoroptimizer=enabled
+fepphpyuicsscompressoroptimizer=disabled
 
 fepclosurejavascriptoptimizer=disabled
 fepyuicompressorjavascriptoptimizer=disabled
 fepuglifyjavascriptoptimizer=disabled
-fepjsminplusjavascriptoptimizer=enabled
+fepjsminplusjavascriptoptimizer=disabled
 
 */ ?>
