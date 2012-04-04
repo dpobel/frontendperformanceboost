@@ -28,6 +28,13 @@
             <info_url>http://yuilibrary.com/projects/yuicompressor/</info_url>
             <version>2.4.7</version>
         </uses>
+        <uses>
+            <name>UglifyJS</name>
+            <license>BSD License</license>
+            <copyright>Copyright 2010 (c) Mihai Bazon</copyright>
+            <info_url>https://github.com/mishoo/UglifyJS</info_url>
+            <version>1.2.6</version>
+        </uses>
     </software>
     <dependencies>
         <extends>
