@@ -5,7 +5,7 @@
  * @package frontendperformanceboost
  */
 
-class fepPhpYuiCssCompressorOptimizer
+class fepPhpYuiCssCompressorOptimizer extends fepOptimizer
 {
 
     /**
@@ -21,8 +21,17 @@ class fepPhpYuiCssCompressorOptimizer
             __METHOD__, 'Packer',
             'Front end performance boost CSS optimizer'
         );
+        $size = strlen( $css );
+
         $minimizer = new CSSmin( false );
         $css = $minimizer->run( $css );
+
+        self::report(
+            strtolower( __CLASS__ ),
+            __CLASS__,
+            $size,
+            strlen( $css )
+        );
         eZDebug::accumulatorStop( __METHOD__ );
 
         return $css;
