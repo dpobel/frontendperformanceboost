@@ -8,16 +8,10 @@
 class fepYuiCompressorJavaScriptOptimizer extends fepCliOptimizer
 {
     /**
-     * setting to enable conditional debug
-     * @see debug.ini.append.php
-     */
-    const DEBUG_SETTING = 'fep-yuicompressor-optimizer';
-
-    /**
      * Optimizes the JS string by using Yui Compressor
      *
      * @param string $code
-     * @param int $level 
+     * @param int $level
      * @return string
      */
     public static function optimize( $code, $level = 2 )
@@ -26,24 +20,11 @@ class fepYuiCompressorJavaScriptOptimizer extends fepCliOptimizer
             __METHOD__, 'Packer',
             'Front end performance boost JS optimizer'
         );
-        $originalSize = strlen( $code );
-        $ini = eZINI::instance( 'ezjscore.ini' );
-        $command = $ini->variable( 'YuiCompressor', 'Command' );
-        eZDebugSetting::writeDebug(
-            self::DEBUG_SETTING, 'Running ' . $command, __METHOD__
-        );
-        $res = self::execute( $command, $code, $level );
 
-        $optimizedSize = strlen( $res );
-        eZDebugSetting::writeDebug(
-            self::DEBUG_SETTING, 'Original size: ' . $originalSize, __METHOD__
+        $optimizer = new self(
+            eZINI::instance( 'ezjscore.ini' ), 'YuiCompressor'
         );
-        eZDebugSetting::writeDebug(
-            self::DEBUG_SETTING,
-            'Optimized size: ' . $optimizedSize
-                . ' (' . round( $optimizedSize * 100/$originalSize, 1 ) . '%)',
-            __METHOD__
-        );
+        $res = $optimizer->execute( $code, $level );
 
         eZDebug::accumulatorStop( __METHOD__ );
         return $res;
