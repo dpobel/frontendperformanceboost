@@ -116,7 +116,6 @@ class fepCliOptimizer extends fepOptimizer
     public function execute( $code, $level = 2 )
     {
         $this->originalCodeSize = strlen( $code );
-        $originalSize = strlen( $code );
         $pipes = array();
         $process = proc_open(
             $this->getCommand(),
@@ -133,19 +132,65 @@ class fepCliOptimizer extends fepOptimizer
         {
             throw new Exception( 'proc_open() failed' );
         }
-
         fwrite( $pipes[0], $code );
         fclose( $pipes[0] );
 
-        $code = stream_get_contents( $pipes[1] );
-        fclose( $pipes[1] );
+        stream_set_blocking( $pipes[1], 0 );
+        stream_set_blocking( $pipes[2], 0 );
 
-        $errorOutput = stream_get_contents( $pipes[2] );
+        $errorOutput = '';
+        $code = '';
+        while ( true )
+        {
+            $w = $e = array();
+            $r = array( $pipes[1], $pipes[2] );
+            if ( $r[0] === null )
+            {
+                unset( $r[0] );
+            }
+            if ( $r[1] === null )
+            {
+                unset( $r[1] );
+            }
+            if ( empty( $r ) )
+            {
+                break;
+            }
+            $res = stream_select( $r, $w, $e, 0, 200000 );
+            if ( $res === false )
+            {
+                throw new Exception( 'An error occured while reading the outputs of the command' );
+            }
+            if ( $res !== 0 )
+            {
+                foreach ( $r as $fp )
+                {
+                    if ( $fp === $pipes[2] )
+                    {
+                        $errorOutput .= stream_get_contents( $fp );
+                        if ( feof( $fp ) )
+                        {
+                            fclose( $pipes[2] );
+                            $pipes[2] = null;
+                        }
+                    }
+                    else if ( $fp === $pipes[1] )
+                    {
+                        $code .= stream_get_contents( $fp );
+                        if ( feof( $fp ) )
+                        {
+                            fclose( $pipes[1] );
+                            $pipes[1] = null;
+                        }
+                    }
+                }
+            }
+        }
+
         if ( $errorOutput != '' )
         {
             eZDebug::writeWarning( $errorOutput, 'Error output' );
         }
-        fclose( $pipes[2] );
 
         $return = proc_close( $process );
         if ( $return != 0 )
